@@ -1,0 +1,156 @@
+{# app/Resources/views/base.html.twig #}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Страница не найдена</title>
+		<meta name="author" content=""/>
+		<!-- mobile viewport optimisation -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="yandex-verification" content="d9b65fcbbe310400" />
+
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+		<!--link href="{#{ asset('bundles/cabinet/bootstrap/css/bootstrap.min.css') }#}" rel="stylesheet" media="screen"-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<link rel="stylesheet" type="text/css" href="{{ asset('bundles/cabinet/css/style.css') }}"/>
+
+		<!--[if IE 9]>
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/cabinet/css/ie9.css') }}"/>
+		<![endif]-->
+
+		<!--[if (IE 5) | (IE 6) | (IE 7) | (IE 8)]>
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/cabinet/css/ie.css') }}"/>
+		<![endif]-->
+
+		<script type="text/javascript" src="{{ asset('bundles/cabinet/js/ItemTransitions/modernizr.custom.js') }}"></script>
+
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+		<script src="{{ asset('bundles/cabinet/bootstrap/js/moment-with-locales.min.js') }}"></script>
+		<!--script src="{#{ asset('bundles/cabinet/bootstrap/js/bootstrap.min.js') }#}"></script-->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			(function (d, w, c) {
+				(w[c] = w[c] || []).push(function() {
+					try {
+						w.yaCounter39356156 = new Ya.Metrika({
+							id:39356156,
+							clickmap:true,
+							trackLinks:true,
+							accurateTrackBounce:true,
+							webvisor:true
+						});
+					} catch(e) { }
+				});
+
+				var n = d.getElementsByTagName("script")[0],
+					s = d.createElement("script"),
+					f = function () { n.parentNode.insertBefore(s, n); };
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+				if (w.opera == "[object Opera]") {
+					d.addEventListener("DOMContentLoaded", f, false);
+				} else { f(); }
+			})(document, window, "yandex_metrika_callbacks");
+
+
+			$(document).ready(function() {
+				$('body').append('<div id="button-up" class="hidden-sm hidden-xs">^ Наверх</div>');
+
+					$ (window).scroll (function () {
+						if ($ (this).scrollTop () > 500) {
+							$ ('#button-up').fadeIn(0);
+						} else {
+							$ ('#button-up').fadeOut(0);
+						}
+					});
+
+				$('#button-up').click(function(){
+					$('body,html').animate({
+						scrollTop: 0
+					}, 0);
+					return false;
+				});
+
+				$('#button-up').hover(
+					function() {
+						$(this).animate({
+						'opacity':'1',
+						},0).css({'background-color':'#ede1e1','color':'#f03939'});
+					}, function(){
+						$(this).animate({
+						'opacity':'0.4'
+						},0).css({'background':'none','color':'#f03939'});
+					}
+				);
+			});
+
+		</script>
+		<!-- /Yandex.Metrika counter -->
+
+	</head>
+
+	<body>
+
+			<div class="navbar navbar-inverse menu" role="navigation">
+				<div class="container">
+					<div class="row">
+						<div class="collapse navbar-collapse">
+							<div class="row">
+								<ul class="nav navbar-nav">
+									<li><a href="{{ path('top10_cabinet_default_index') }}">ВИКИ ТЕСТ</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12 center_content">
+								<div class="post block-border">
+									<div class="col-xs-12">
+										<h1>Такой страницы не существует</h1>
+										<h2>Ошибка: "{{ status_code }} {{ status_text }}".</h2>
+
+										<div class="col-xs-12">
+											<div class="row">
+												<a class="btn_link icin_btn" href="{{ path('wiki_add') }}">
+													<span class="glyphicon glyphicon-plus"></span> Добавить страницу
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom_content">
+			</div>
+		</div>
+
+
+		<footer>
+			<div class="container">
+				<div class="navbar navbar-inverse menu_footer" role="navigation">
+					<div class="collapse navbar-collapse data-target-footer">
+						<ul class="nav navbar-nav">
+							<li><a href="{{ path('top10_cabinet_default_index') }}">Вики тест</a></li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

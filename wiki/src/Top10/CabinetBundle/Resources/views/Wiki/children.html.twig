@@ -1,0 +1,10 @@
+{% if item.children|length > 0 %}
+	<ul>
+	{% for children in item.children %}
+		<li>
+			<a href="{{ path('wiki_show', { 'code': children.code }) }}">{{ children.name }}</a>
+			{% include 'Top10CabinetBundle:Wiki:children.html.twig' with { 'item' : children } %}
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}

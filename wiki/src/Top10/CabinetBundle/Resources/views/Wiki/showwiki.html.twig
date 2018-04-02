@@ -1,0 +1,48 @@
+{% extends '::basewiki.html.twig' %} 
+
+{% block title %}{{wiki.name}}{% endblock %}
+
+{% block javascript %}{% endblock %}
+{% block body %}
+
+<div class="col-xs-12 center_content">
+	<div class="post block-border">
+		<div class="col-xs-12">
+			<img class="img-responsive" src="{{ wiki.image }}"/>
+			<p>{{ wikiСontent | raw }}</p>
+		</div>
+	</div>
+</div>
+
+<div class="col-xs-12 center_content">
+	<div class="post block-border">
+		<div class="col-xs-12">
+			<div class="col-xs-12">
+				<div class="row">
+					<a class="btn_link icin_btn" href="{{ path('wiki_edit', { 'code':wiki.code }) }}"><span class="glyphicon glyphicon-pencil"></span> Изменить страницу</a>
+					<a class="btn_link icin_btn" href="{{ path('wiki_children_add', { 'code_parent':wiki.code }) }}"><span class="glyphicon glyphicon-plus"></span> Добавить подстраницу</a>
+					<a class="btn_link icin_btn"
+					   onclick="if( !confirm('Уверены, что хотите удалить страницу "{{ wiki.name }}" и все ее дочерние страницы?') ) return false;" 
+					   href="{{ path('wiki_delete', { 'code':wiki.code }) }}">
+							<span class="glyphicon glyphicon-remove"></span> Удалить страницу
+					</a>
+				</div>
+			</div>
+			{% if wiki.parent.id is defined %}
+				<h3>Родительская страница</h3>
+				<ul>
+					<li>
+						<a href="{{ path('wiki_show', { 'code': wiki.parent.code }) }}">{{ wiki.parent.name }}</a>
+					</li>
+				</ul>
+			{% endif %}
+		</div>
+		<div class="col-xs-12">
+			<h3>Дочерние страницы</h3>
+			{% include 'Top10CabinetBundle:Wiki:children.html.twig' with { 'item' : wiki } %}
+		</div>
+	</div>
+</div>
+
+
+{% endblock body %}
